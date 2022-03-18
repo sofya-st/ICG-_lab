@@ -9,10 +9,11 @@ GLuint VBO;
 static void RenderSceneCB()
 {
     glClear(GL_COLOR_BUFFER_BIT);
+    glColor3f(0.0f, 0.2f, 0.0f);
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0);
-    glDrawArrays(GL_POINTS, 0, 1);
+    glDrawArrays(GL_TRIANGLES, 0, 3);
     glDisableVertexAttribArray(0);
     glutSwapBuffers();
 }
@@ -37,9 +38,10 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    GLfloat vertices[] = {
-        0.0f, 0.0f, 0.0f,
-    };
+    glm::vec3 vertices[3];
+    vertices[0] = glm::vec3(-0.3f, 0.4f, 0.0f);
+    vertices[1] = glm::vec3(1.0f, -0.4f, 0.0f);
+    vertices[2] = glm::vec3(0.0f, 1.0f, 0.0f);
 
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
